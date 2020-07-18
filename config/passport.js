@@ -21,8 +21,8 @@ module.exports = function (passport) {
                         img: profile.photos[0].value
                     });
 
-
                     newUser.save().then(newuser => {
+                        // console.log(`user is saves ${newuser}`);
                         done(null, newUser)
                     })
                 }
