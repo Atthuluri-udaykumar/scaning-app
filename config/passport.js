@@ -23,7 +23,7 @@ module.exports = function (passport) {
                     });
 
                     newUser.save().then(newuser => {
-                        console.log(`user is saves ${newuser}`);
+                        // console.log(`user is saves ${newuser}`);
                         done(null, newUser)
                     })
                 }
