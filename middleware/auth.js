@@ -10,7 +10,7 @@ module.exports = {
     },
     ensureGust: function (req, res, next) {
         if (req.isAuthenticated()) {
-            return res.redirect('/auth/dashbord')
+            return res.redirect('/dashbord')
         } else {
             return next()
         }
