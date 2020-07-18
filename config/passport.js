@@ -11,7 +11,6 @@ module.exports = function (passport) {
         function (accessToken, refreshToken, profile, done) {
             User.findOne({ googleId: profile.id }).then((currentUser) => {
                 if (currentUser) {
-                    console.log(`user already exist ${currentUser}`);
                     done(null, currentUser)
                 } else {
                     const newUser = new User({
@@ -23,7 +22,6 @@ module.exports = function (passport) {
                     });
 
                     newUser.save().then(newuser => {
-                        // console.log(`user is saves ${newuser}`);
                         done(null, newUser)
                     })
                 }
