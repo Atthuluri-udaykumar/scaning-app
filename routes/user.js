@@ -4,7 +4,7 @@ const multer = require("multer");
 const { signUpValidation, singInValidation } = require("../validations/validate")
 const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken")
-const varify = require('./verifyToken')
+const varify = require('../middleware/verifyToken')
 
 // filter the images:--
 function fileFilter(req, file, cb) {
@@ -41,7 +41,6 @@ router.get('/', varify, (req, res) => {
 })
 
 router.post("/", upload.single("image_url"), async (req, res) => {
-
     // backend validations :--
     const { error } = signUpValidation(req.body);
     if (error) return res.json({
@@ -66,6 +65,7 @@ router.post("/", upload.single("image_url"), async (req, res) => {
         password: hashpassword,
         image_url: req.file.path
     })
+
     try {
         let saveUser = await newUser.save()
         res.send({ user: saveUser._id })
@@ -75,11 +75,10 @@ router.post("/", upload.single("image_url"), async (req, res) => {
             msg: err
         });
     }
-
-})
-
+});
 
 // user login :-
+
 router.post('/login', async (req, res) => {
     // validations using hopijoi
     const { error } = singInValidation(req.body);
@@ -104,8 +103,7 @@ router.post('/login', async (req, res) => {
 
     // creaate jwt token :--
     const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-    res.header("auth-token", token).send(token)
-
+    res.header("auth_token", token).send(token)
 });
 
 
