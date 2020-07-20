@@ -25,13 +25,18 @@ app.use(session({
 }))
 
 // passport middlewares:--
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '50mb' }));
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use("/uploads", express.static("uploads"))
 app.use(passport.initialize());
 app.use(passport.session());
 
 // middleware
 app.use("/", require('./routes/api'));
 app.use("/auth", require('./routes/auth'));
+app.use("/user", require('./routes/user'));
 
 const port = process.env.PORT || 2020
 
