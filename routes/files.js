@@ -4,7 +4,6 @@ const path = require("path")
 const crypto = require("crypto")
 const Grid = require("gridfs-stream")
 const GridFsStorage = require("multer-gridfs-storage")
-const connectDb = require("../config/db");
 const mongoose = require("mongoose")
 
 // db calling :--

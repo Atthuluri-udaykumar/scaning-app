@@ -6,12 +6,10 @@ const MongoStore = require('connect-mongo')(session)
 const mongoose = require('mongoose')
 const bodyParser = require("body-parser")
 
-
 // CONFIG files:-
 require('dotenv').config();
 const app = express()
 connectDb();
-
 
 app.set("view engine", 'ejs')
 require("./config/passport")(passport);
