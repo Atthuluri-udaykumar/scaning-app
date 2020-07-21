@@ -35,6 +35,7 @@ app.use(passport.session());
 
 // middleware
 app.use("/", require('./routes/api'));
+app.use("/file", require('./routes/files'))
 app.use("/auth", require('./routes/auth'));
 app.use("/user", require('./routes/user'));
 
